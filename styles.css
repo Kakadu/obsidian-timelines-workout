@@ -206,23 +206,53 @@
 
 div.vis-item-content > a,
 div.vis-item-overflow > div > a {
-  text-decoration: none !important;
-  color: inherit;
-  padding: 6px;
+    text-decoration: none !important;
+    color: inherit;
+    padding: 6px;
 }
 
 .vis-item:hover div.vis-item-content > a,
 .vis-item:hover div.vis-item-overflow > div > a,
 .vis-item.vis-selected div.vis-item-content > a,
 .vis-item.vis-selected div.vis-item-overflow > div > a {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .vis-item {
-  cursor: pointer;
-  box-sizing: border-box !important;
+    cursor: pointer;
+    box-sizing: border-box !important;
 }
 
+.vis-item.blue {
+    background-color: rgb(3, 169, 244);
+    filter: none;
+    border-color: #0277ab;
+}
+.vis-item.blue:hover,
+.vis-item.vis-selected.blue {
+    background-color: rgb(3, 189, 244);
+    border-color: rgb(2, 139, 171);
+}
+.vis-item.green {
+    background-color: rgb(139, 195, 74);
+    filter: none;
+    border-color: #628934;
+}
+.vis-item.green:hover,
+.vis-item.vis-selected.green {
+    background-color: rgb(139, 195, 74);
+    border-color: #628934;
+}
+.vis-item.gray {
+    background-color: rgb(144, 164, 174);
+    filter: none;
+    border-color: #66757c;
+}
+.vis-item.gray:hover,
+.vis-item.vis-selected.gray {
+    background-color: rgb(156, 180, 189);
+    border-color: rgb(119, 138, 143);
+}
 .vis-item.orange {
     background-color: rgb(255, 116, 0);
     filter: none;
@@ -234,65 +264,58 @@ div.vis-item-overflow > div > a {
     background-color: orange;
     border-color: orangered;
 }
-
-.vis-item.green {
-  background-color: rgb(139, 195, 74);
-  filter: none;
-  border-color: #628934;
-}
-
-.vis-item.green:hover,
-.vis-item.vis-selected.green {
-  background-color: rgb(139, 195, 74);
-  border-color: #628934;
-}
-
 .vis-item.pink {
-  background-color: rgb(229, 115, 115);
-  filter: none;
-  border-color: #ab5353;
+    background-color: rgb(229, 115, 115);
+    filter: none;
+    border-color: #ab5353;
 }
 .vis-item.pink:hover,
 .vis-item.vis-selected.pink {
-  background-color: rgb(249, 115, 115);
-  border-color: rgb(191, 83, 83);
+    background-color: rgb(249, 115, 115);
+    border-color: rgb(191, 83, 83);
 }
-
+.vis-item.purple {
+    background-color: rgb(128, 0, 128);
+    filter: none;
+    border-color: purple;
+}
+.vis-item.purple:hover,
+.vis-item.vis-selected.purple {
+    /* custom colors for selected purple items */
+    background-color: rgb(153, 50, 204);
+    border-color: rgb(102, 0, 102);
+}
+.vis-item.red {
+    background-color: rgb(255, 0, 0);
+    filter: none;
+    border-color: red;
+}
+.vis-item.red:hover,
+.vis-item.vis-selected.red {
+    /* custom colors for selected red items */
+    background-color: rgb(255, 51, 51);
+    border-color: rgb(204, 0, 0);
+}
 .vis-item.yellow {
-  background-color: rgb(255, 193, 7);
-  filter: none;
-  border-color: #b38705;
+    background-color: rgb(255, 193, 7);
+    filter: none;
+    border-color: #b38705;
 }
 .vis-item.yellow:hover,
 .vis-item.vis-selected.yellow {
-  background-color: rgb(255, 213, 7);
-  border-color: rgb(179, 155, 5);
+    background-color: rgb(255, 213, 7);
+    border-color: rgb(179, 155, 5);
 }
-
-.vis-item.blue {
-  background-color: rgb(3, 169, 244);
-  filter: none;
-  border-color: #0277ab;
+.vis-item.white {
+    background-color: white;
+    filter: none;
+    border-color: #b3b3b3;
 }
-
-.vis-item.blue:hover,
-.vis-item.vis-selected.blue {
-  background-color: rgb(3, 189, 244);
-  border-color: rgb(2, 139, 171);
+.vis-item.white:hover,
+.vis-item.vis-selected.white {
+    background-color: #f2f2f2;
+    border-color: #999999;
 }
-
-.vis-item.gray {
-  background-color: rgb(144, 164, 174);
-  filter: none;
-  border-color: #66757c;
-}
-
-.vis-item.gray:hover,
-.vis-item.vis-selected.gray {
-  background-color: rgb(156, 180, 189);
-  border-color: rgb(119, 138, 143);
-}
-
 .vis-panel.vis-center,
 .vis-panel.vis-left,
 .vis-panel.vis-right {
