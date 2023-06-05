@@ -65,7 +65,8 @@ tags: [timeline, personal]
 title: My Note Title(otherwise uses the title of the note by default)
 ---
 ```
-Color supports `orange`, `green`, `pink`, `yellow`, and is blue by default if color is not provided in the frontmatter.
+![example](https://raw.githubusercontent.com/ReconVirus/obsidian-timelines/main/images/Colors.png)
+Color supports `green`, `gray`, `orange`, `pink`, `purple`, `yellow`, `white`  and is blue by default if color is not provided in the frontmatter.
 You can add any other colors you want in a CSS snippet with the following example rule:
 
 ```CSS
