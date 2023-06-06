@@ -16,7 +16,8 @@ export const DEFAULT_SETTINGS: TimelinesSettings = {
     timelineTag: 'timeline',
     sortDirection: true,
 	notePreviewOnHover: true,
-	frontmatterKeys: DEFAULT_FRONTMATTER_KEYS
+	frontmatterKeys: DEFAULT_FRONTMATTER_KEYS,
+	era: [' BC',' AD']
 }
 
 export interface Args {

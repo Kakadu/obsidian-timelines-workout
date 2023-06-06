@@ -1,6 +1,7 @@
 import {FrontmatterKeys} from "./constants";
 
 export interface TimelinesSettings {
+	era: any;
 	timelineTag: string;
 	sortDirection: boolean;
 	notePreviewOnHover: boolean;

@@ -48,6 +48,17 @@ export class TimelinesSettingTab extends PluginSettingTab {
 				});
 			})
 
+		new Setting(containerEl)
+			.setName('Era Suffix')
+			.setDesc('Set custom eras for timelines such as "BC" or "AD"')
+			.addText(text => text
+				.setPlaceholder(this.plugin.settings.era.join(','))
+				.setValue(this.plugin.settings.era)
+				.onChange(async (value) => {
+					this.plugin.settings.era = value.split(',');
+					await this.plugin.saveSettings();
+				}));
+
 		containerEl.createEl('h5', { text: "Customize Frontmatter Keys" }).appendChild(
 			createEl("p", {
 				text: "Specify the front matter keys used to extract start dates, end dates, and titles for the timeline notes. Defaults to 'start-date', 'end-date', and 'title'.",
@@ -85,5 +96,5 @@ export class TimelinesSettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				}));
 
+			}
 	}
-}

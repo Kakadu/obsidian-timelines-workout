@@ -84,18 +84,17 @@ export class TimelineProcessor {
 			// else it is descending
 			timelineDates = timelineDates.sort((d1, d2) => d2 - d1);
 		}
-		
+
 		if (!visTimeline) {
 
 			let eventCount = 0;
 			// Build the timeline html element
 			for (let date of timelineDates) {
 				let noteContainer = timeline.createDiv({ cls: 'timeline-container' });
-				let noteHeader = noteContainer.createEl('h2', { text: timelineNotes[date][0].date.replace(/-0*$/g, '').replace(/-0*$/g, '').replace(/-0*$/g, '') });
-				let eventContainer = noteContainer.createDiv({ cls: 'timeline-event-list', attr: { 'style': 'display: block' } });
-				let dateObj = new Date(timelineNotes[date][0].date);
-				let era = dateObj.getFullYear() < 0 ? ' BC' : ' AD';
-				noteHeader.textContent += era;
+				let noteHeader = noteContainer.createEl('h2', { text: timelineNotes[date][0].date.replace(/-0*$/g, '').replace(/-0*$/g, '').replace(/-0*$/g, '')});
+				let era = settings.era[Number(!noteHeader.textContent.startsWith('-'))];
+				let eventContainer = noteContainer.createDiv({ cls: 'timeline-event-list', attr: { 'style': 'display: block'} });
+				noteHeader.textContent += ' ' + era;
 
 				noteHeader.addEventListener('click', event => {
 					if (eventContainer.style.getPropertyValue('display') === 'none') {
