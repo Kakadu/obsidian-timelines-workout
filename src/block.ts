@@ -137,7 +137,7 @@ export class TimelineProcessor {
 							attr: { href: `${eventAtDate.path}` },
 							text: eventAtDate.title
 						});
-					noteCard.createEl('p', { text: eventAtDate.innerHTML });
+					noteCard.createEl('p', { text: eventAtDate.description });
 				}
 				eventCount++;
 			}
@@ -170,7 +170,7 @@ export class TimelineProcessor {
 					attr: { href: `${event.path}` },
 					text: event.title
 				});
-				noteCard.createEl('p', { text: event.innerHTML });
+				noteCard.createEl('p', { text: event.description });
 
 				let startDate = event.date?.replace(/(.*)-\d*$/g, '$1');
 				let start, end;
@@ -204,6 +204,7 @@ export class TimelineProcessor {
 					id: items.length + 1,
 					content: event.title ?? '',
 					title: noteCard.outerHTML,
+					description: event.description,
 					start: start,
 					className: event.class ?? '',
 					type: event.type,
@@ -267,7 +268,7 @@ async function getTimelineData(fileList: TFile[], settings: TimelinesSettings, f
 		for (let event of timelineData) {
 			if (!(event instanceof HTMLElement)) continue;
 
-			const [startDate, noteTitle, noteClass, notePath, type, endDate] = getFrontmatterData(frontmatter, settings.frontmatterKeys, event, file);
+			const [startDate, noteTitle, description, noteClass, notePath, type, endDate] = getFrontmatterData(frontmatter, settings.frontmatterKeys, event, file);
 
 			let noteId;
 			if (startDate[0] == '-') {
@@ -281,6 +282,7 @@ async function getTimelineData(fileList: TFile[], settings: TimelinesSettings, f
 			const note = {
 				date: startDate,
 				title: noteTitle,
+				description: description ?? frontmatter.description,
 				img: getImgUrl(appVault.adapter, event.dataset.img) ?? getImgUrl(appVault.adapter, frontmatter?.image),
 				innerHTML: event.innerHTML ?? frontmatter?.html ?? '',
 				path: notePath,
@@ -302,18 +304,19 @@ async function getTimelineData(fileList: TFile[], settings: TimelinesSettings, f
 	return [timelineNotes, timelineDates];
 }
 
-function getFrontmatterData(frontmatter: FrontMatterCache | null, frontmatterKeys: FrontmatterKeys, event: HTMLElement, file: TFile): [string, string, string, string, string, string | null] {
+function getFrontmatterData(frontmatter: FrontMatterCache | null, frontmatterKeys: FrontmatterKeys, event: HTMLElement, file: TFile): [string, string, string, string, string, string, string | null] {
 	const startDate = event.dataset.date ?? findMatchingFrontmatterKey(frontmatter, frontmatterKeys.startDateKey);
 	if (!startDate) {
 		new Notice(`No date found for ${file.name}`);
-		return ['', '', '', '', '', ''];
+		return ['', '', '', '', '', '', ''];
 	}
 	const noteTitle = event.dataset.title ?? findMatchingFrontmatterKey(frontmatter, frontmatterKeys.titleKey) ?? file.name.replace(".md", "");
+	const description = frontmatter.desription 
 	const noteClass = event.dataset.class ?? frontmatter["color"] ?? '';
 	const notePath = '/' + file.path;
 	const type = event.dataset.type ?? frontmatter["type"] ?? 'box';
 	const endDate = event.dataset.end ?? findMatchingFrontmatterKey(frontmatter, frontmatterKeys.endDateKey) ??  null;
-	return [startDate, noteTitle, noteClass, notePath, type, endDate];
+	return [startDate, noteTitle, description, noteClass, notePath, type, endDate];
 }
 
 function findMatchingFrontmatterKey(frontmatter: FrontMatterCache | null, keys: string[]) {

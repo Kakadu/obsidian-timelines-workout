@@ -4,12 +4,14 @@ export interface FrontmatterKeys {
 	startDateKey: string[];
 	endDateKey: string[];
 	titleKey: string[];
+	descriptionKey: string[];
 }
 
 const DEFAULT_FRONTMATTER_KEYS: FrontmatterKeys = {
 	startDateKey: ['start-date'],
 	endDateKey: ['end-date'],
 	titleKey: ['title'],
+	descriptionKey:['description'],
 };
 
 export const DEFAULT_SETTINGS: TimelinesSettings = {

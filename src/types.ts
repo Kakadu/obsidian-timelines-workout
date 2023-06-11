@@ -15,6 +15,7 @@ export interface TimelineArgs {
 export interface CardContainer {
 	date: string;
 	title: string;
+	description: string;
 	img: string;
 	innerHTML: string;
 	path: string;
