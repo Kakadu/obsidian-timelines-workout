@@ -15,7 +15,7 @@
         "@rollup/plugin-node-resolve": "^9.0.0",
         "@rollup/plugin-typescript": "^6.0.0",
         "@types/node": "^14.14.2",
-        "obsidian": "^1.1.1",
+        "obsidian": "latest",
         "rollup": "^2.32.1",
         "tslib": "^2.0.3",
         "typescript": "^5.0.4"

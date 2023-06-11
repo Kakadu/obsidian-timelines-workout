@@ -25,7 +25,6 @@ export class TimelinesSettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				}));
 
-
 		new Setting(containerEl)
 			.setName('Chronological Direction')
 			.setDesc('When enabled, events will be sorted from old to new. Turn this setting off to sort from new to old.')
