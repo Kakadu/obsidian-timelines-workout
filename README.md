@@ -63,6 +63,7 @@ type: range
 color: blue(defalult if not provided) 
 tags: [timeline, personal]
 title: My Note Title(otherwise uses the title of the note by default)
+description: (can be used to add subtext under the title)
 ---
 ```
 ![example](https://raw.githubusercontent.com/ReconVirus/obsidian-timelines/main/images/Colors.png)
@@ -86,6 +87,7 @@ Supported `types` are:
 - range
 - box
 - background
+- point
 
 #### Method 2: HTML
 
@@ -100,7 +102,7 @@ A timeline entry can be created using a `<span></span>` or `<div></div>` tag, wi
 	  data-img = 'Timeline Example/Timeline_2.jpg' 
 	  data-type='range' 
 	  data-end='2000-10-20-00'> 
-	A second event!
+	A second event! (this would be used as the description for the timeline event card)
 </span>
 ```
 Timeline span and div entries (.ob-timelines class) are hidden in preview by default, however, if you wish to display content, try a snippet like this: 
@@ -158,6 +160,9 @@ would be rendered as:
 
 ## Release Notes
 
+### V0.3.7
+- Description from frontmatter
+  - change description key in settings
 ### V0.3.6
 - Era Suffix suppoty
   - Custom in settings, clean up Readme
