@@ -311,7 +311,7 @@ function getFrontmatterData(frontmatter: FrontMatterCache | null, frontmatterKey
 		return ['', '', '', '', '', '', ''];
 	}
 	const noteTitle = event.dataset.title ?? findMatchingFrontmatterKey(frontmatter, frontmatterKeys.titleKey) ?? file.name.replace(".md", "");
-	const description = frontmatter.desription 
+	const description = frontmatter.desription;
 	const noteClass = event.dataset.class ?? frontmatter["color"] ?? '';
 	const notePath = '/' + file.path;
 	const type = event.dataset.type ?? frontmatter["type"] ?? 'box';
