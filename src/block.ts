@@ -1,16 +1,17 @@
 //import Gallery from './svelte/Gallery.svelte'
-import type {AllNotesData, NoteData, TimelinesSettings} from './types';
-import {Args, FrontmatterKeys, RENDER_TIMELINE} from './constants';
-import type {FrontMatterCache, MarkdownView, MetadataCache, TFile, Vault,} from 'obsidian';
-import {Notice} from 'obsidian';
-import {Timeline} from "vis-timeline/esnext";
-import {DataSet} from "vis-data";
+import type { AllNotesData, NoteData, TimelinesSettings } from './types';
+import { Args, FrontmatterKeys, RENDER_TIMELINE } from './constants';
+import type { FrontMatterCache, MarkdownView, MetadataCache, TFile, Vault, } from 'obsidian';
+import { Notice } from 'obsidian';
+import { Timeline } from "vis-timeline/esnext";
+import { DataSet } from "vis-data";
 import "vis-timeline/styles/vis-timeline-graph2d.css";
-import {createDate, FilterMDFiles, getImgUrl, parseTag} from './utils';
+import { createDate, FilterMDFiles, getImgUrl, parseTag } from './utils';
 
 export class TimelineProcessor {
 
 	async insertTimelineIntoCurrentNote(sourceView: MarkdownView, settings: TimelinesSettings, vaultFiles: TFile[], fileCache: MetadataCache, appVault: Vault) {
+		console.log("insertTimelineIntoCurrentNote")
 		let editor = sourceView.editor;
 		if (editor) {
 			const source = editor.getValue();
@@ -34,7 +35,7 @@ export class TimelineProcessor {
 	};
 
 	async run(source: string, el: HTMLElement, settings: TimelinesSettings, vaultFiles: TFile[], fileCache: MetadataCache, appVault: Vault, visTimeline: boolean) {
-
+		console.log("Block.run")
 		let args: Args = {
 			tags: '',
 			divHeight: 400,
@@ -91,9 +92,9 @@ export class TimelineProcessor {
 			// Build the timeline html element
 			for (let date of timelineDates) {
 				let noteContainer = timeline.createDiv({ cls: 'timeline-container' });
-				let noteHeader = noteContainer.createEl('h2', { text: timelineNotes[date][0].date.replace(/-0*$/g, '').replace(/-0*$/g, '').replace(/-0*$/g, '')});
+				let noteHeader = noteContainer.createEl('h2', { text: "FUCK" + timelineNotes[date][0].date.replace(/-0*$/g, '').replace(/-0*$/g, '').replace(/-0*$/g, '') });
 				let era = settings.era[Number(!noteHeader.textContent.startsWith('-'))];
-				let eventContainer = noteContainer.createDiv({ cls: 'timeline-event-list', attr: { 'style': 'display: block'} });
+				let eventContainer = noteContainer.createDiv({ cls: 'timeline-event-list', attr: { 'style': 'display: block' } });
 				noteHeader.textContent += ' ' + era;
 
 				noteHeader.addEventListener('click', event => {
@@ -221,8 +222,8 @@ export class TimelineProcessor {
 			showTooltips: false,
 			template: function (item: any) {
 
-				let eventContainer = document.createElement( settings.notePreviewOnHover ? 'a' : 'div');
-				if("href" in eventContainer) {
+				let eventContainer = document.createElement(settings.notePreviewOnHover ? 'a' : 'div');
+				if ("href" in eventContainer) {
 					eventContainer.addClass('internal-link');
 					eventContainer.href = item.path;
 				}
@@ -252,6 +253,8 @@ export class TimelineProcessor {
 }
 
 async function getTimelineData(fileList: TFile[], settings: TimelinesSettings, fileCache: MetadataCache, appVault: Vault): Promise<[NoteData[], number[]]> {
+	console.log("getTimelineData")
+
 	const timeline = document.createElement('div');
 	timeline.classList.add('timeline');
 	const timelineNotes: AllNotesData = [];
@@ -305,6 +308,7 @@ async function getTimelineData(fileList: TFile[], settings: TimelinesSettings, f
 }
 
 function getFrontmatterData(frontmatter: FrontMatterCache | null, frontmatterKeys: FrontmatterKeys, event: HTMLElement, file: TFile): [string, string, string, string, string, string, string | null] {
+	console.log("getFrontmatterData")
 	const startDate = event.dataset.date ?? findMatchingFrontmatterKey(frontmatter, frontmatterKeys.startDateKey);
 	if (!startDate) {
 		new Notice(`No date found for ${file.name}`);
@@ -315,11 +319,13 @@ function getFrontmatterData(frontmatter: FrontMatterCache | null, frontmatterKey
 	const noteClass = event.dataset.class ?? frontmatter["color"] ?? '';
 	const notePath = '/' + file.path;
 	const type = event.dataset.type ?? frontmatter["type"] ?? 'box';
-	const endDate = event.dataset.end ?? findMatchingFrontmatterKey(frontmatter, frontmatterKeys.endDateKey) ??  null;
+	const endDate = event.dataset.end ?? findMatchingFrontmatterKey(frontmatter, frontmatterKeys.endDateKey) ?? null;
 	return [startDate, noteTitle, description, noteClass, notePath, type, endDate];
 }
 
 function findMatchingFrontmatterKey(frontmatter: FrontMatterCache | null, keys: string[]) {
+	console.log("findMatchingFrontmatterKey")
+
 	for (const key of keys) {
 		if (frontmatter && frontmatter[key]) {
 			return frontmatter[key];
